@@ -1,0 +1,336 @@
+div.content{
+    height: auto;
+
+}
+.content .aside_content{
+    float: right;
+    width: 25%;
+    margin-left: 5%;
+    margin-top: 30px;
+}
+pre{
+    min-height: 200px;
+}
+.content .detail_content{
+    float: left;
+    width: 70%;
+}
+ .content_source{
+    color: #2a2929;
+    margin-top: 25px;
+     margin-bottom: 30px;
+}
+.content_source .source_name{
+    color: #2f85fc;
+    font-family: cursive;
+    font-size: 20px;
+}
+.content_source h3.detail_title{
+    font: bold 18px "微软正黑体";
+}
+.author_msg{
+    padding: 15px;
+}
+.author_msg .source_img{
+    width: 90px;
+    border-radius: 50%;
+    margin: 10px 70px 10px;
+}
+.author_msg{
+    border: 5px solid  #edebeb;
+}
+.author_msg:hover{
+    border: 5px solid #2f85fc;
+}
+.his_name {
+    margin-right: 15px;
+}
+.author_new_upload{
+    border-top: 2px solid gray;
+}
+.author_new_upload h5{
+    font-weight: bolder;
+}
+.author_msg .author_name{
+    padding: 10px;
+    text-align: center;
+}
+.detail_msg .author_desc{
+    color: gray;
+}
+.upload_ul li{
+    margin-bottom: 55px;
+}
+.upload_ul li .upload_time{
+    float: left;
+    color: gray;
+}
+.upload_ul li .upload_tier{
+    float: right;
+    color: #2f85fc;
+}
+.upload_ul .upload_title a{
+    color: #5f5555;
+    font: bold 15px "微软正黑体";
+}
+.upload_ul .upload_title a:hover{
+    text-decoration: none;
+    color: #2f85fc;
+}
+.more_download:hover{
+    background: #155afc;
+}
+.more_download{
+    width: 80%;
+    border-radius: 10px;
+    background:#2f85fc ;
+    height: 30px;
+    margin-left: 20px;
+    line-height: 30px;
+    color: white;
+}
+
+.aside_content .relate_download li{
+    list-style-type: circle;
+     color:#2f85fc;
+     font-size: 18px;
+}
+.aside_content .relate_download li a{
+    color: gray ;
+    font:  14px "微软正黑体";
+}
+.aside_content .relate_download li a:hover{
+    color:#2f85fc;
+    text-decoration: none;
+}
+.download_area .btn_download{
+    margin-top: 30px;
+    background:#2f85fc;
+}
+.notice_download {
+    font: 16px "微软雅黑";
+    padding: 5px;
+    color: gray;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    background: whitesmoke;
+    height: 30px;
+    margin-top: 20px;
+}
+button.click_love {
+    margin: 20px 45% 0px;
+    background: #2f85fc;
+    font-size: 14px;
+    text-align: center
+}
+
+
+
+
+#respond .comment {
+    position: relative;
+}
+
+.comment-title {
+    font-size: 12px;
+    color: #999;
+    float: left;
+    margin-left: -46px;
+    width: 36px;
+    text-align: center;
+}
+
+.comment-title .avatar {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.comment-title img:hover {
+    cursor: pointer;
+    -moz-transition: all 0.8s ease-in-out;
+    -webkit-transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s ease-in-out;
+    -ms-transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease-in-out;
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+.comment-box {
+    border: 2px solid #CCD4D9;
+    border-radius: 2px;
+    padding: 4px 4px 0px;
+    background-color: #FFF;
+    position: relative;
+    z-index: 10;
+}
+
+#comment-textarea {
+    width: 100%;
+    resize: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: none;
+    line-height: 22px;
+    font-size: 14px;
+    outline: 0;
+    color: #666;
+    height: 68px;
+}
+
+#comment-textarea::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+    background: #CCC;
+    border-radius: 5px;
+}
+
+#comment-textarea::-webkit-scrollbar-button {
+    display: none;
+}
+
+#comment-textarea::-webkit-scrollbar-track-piece {
+    display: none;
+}
+
+#comment-textarea::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 5px;
+}
+
+#comment-textarea::-webkit-scrollbar-thumb:hover {
+    background: #3399CC;
+}
+
+.comment-ctrl {
+    background-color: #FBFBFB;
+    height: 36px;
+    margin-left: -4px;
+    border-top: solid 1px #F2F2F2;
+    z-index: 5;
+}
+
+.comment-box span.emotion {
+    color: #666;
+    position: absolute;
+    left: -2px;
+    bottom: -2px;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.comment-box span.emotion:hover {
+    color: #3399CC;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-transition-timing-function: cubic-bezier(0.47,2.02,0.31,-0.36);
+    transition-timing-function: cubic-bezier(0.47,2.02,0.31,-0.36);
+}
+.show_comments > h4{
+    border-left:3px solid #2f85fc;
+    padding-left: 10px;
+}
+#comment-submit{
+    background: #2f85fc;
+}
+.comment_notice{
+    line-height: 35px;
+}
+.comment_notice a:hover{
+    text-decoration: none;
+}
+.source_img{
+    width: 90px;
+    height: 90px;
+    margin-left: 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    zoom: 1;
+    float: left;
+}
+.content_msg{
+    margin-left: 145px;
+}
+.show_comments ul li{
+    padding: 10px;
+    min-height: 110px;
+    border-top: 1px solid #e4dfdf;
+}
+.show_comments ul li:last-child{
+    border-bottom: 1px solid #e4dfdf;
+}
+.his_size{
+    font-size: 14px !important;
+}
+.show_comments .content_source{
+    margin-bottom: 0px !important;
+}
+.show_comments .floor_num{
+    float: right;
+    color: #2f85fc;
+    font-weight: bold;
+}
+.show_comments .watch_more_comment{
+    text-align: center;
+}
+.show_comments .watch_more_comment a{
+    color: #696060;
+    font:bolder 18px "微软正黑体";
+}
+.show_comments .watch_more_comment a:hover{
+    color: #2f85fc;
+    text-decoration: none;
+}
+.verify-code{
+    margin: 0 auto 10px;
+}
+.my_verify  h4{
+   text-align: center;
+    color:  #2f85fc;
+    font-weight: bold;
+}
+.verify-code-area{
+    margin: 10px 65px;
+}
+button#check-btn2{
+    background: #2f85fc;
+}
+h5.no_result {
+    text-align: center;
+    color: #2f85fc;
+    font: bold 15px "宋体";
+}
+.show_comments {
+    margin-top: 40px;
+}
+.watch_more_comment .my_wait{
+    margin: 0 auto;
+}
+.content_source .source_name{
+    margin-left: 10px;
+}
+.no_comment{
+    color: firebrick;
+}
+.author_msg .detail_msg {
+    margin-top: 100px;
+}
+.more_download a {
+    color: white;
+    text-decoration: none;
+}
+.content_source .removeComment .layui-icon-delete{
+    color: red;
+    font-size: 20px;
+}
+.relate_download li a{
+    color: #2f85fc !important;
+    font-size: 15px !important
+}

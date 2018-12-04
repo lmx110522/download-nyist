@@ -1,0 +1,140 @@
+div.content{
+    height: auto;
+}
+.content .download_content{
+    float: left;
+    width: 70%;
+}
+.content .aside_content{
+    float: right;
+    width: 25%;
+    margin-left: 5%;
+}
+.content .new_content{
+    height: 500px;
+    margin-top: 10px;
+}
+.download_content .new_title{
+    font: bold 18px "微软雅黑";
+    color: gray;
+}
+.new_content .new_content_ul{
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+.new_content .new_content_ul li{
+    padding: 10px;
+    border-top: 1px solid #e1e1e1;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.new_content_ul .source_img{
+    width: 90px;
+    margin-left: 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    zoom: 1;
+    float: left;
+}
+.content_detail {
+    margin-left: 145px;
+}
+.new_content_ul .go_link_div a{
+    width: 15%;
+    background: #2f85fc;
+    float: right;
+    color: white;
+    height: 30px;
+    font: 17px/30px "微软雅黑";
+    text-align: center;
+}
+.new_content_ul .go_link_div a:hover{
+    background: #2851fc;
+    text-decoration: none;
+}
+.new_content_ul .detail_title a{
+    color: black;
+    font:bolder 20px "微软正黑体";
+}
+.new_content_ul .detail_title a:hover{
+    color: #2F85FC;
+    text-decoration: none;
+}
+.new_content_ul .pdesc{
+    color: #7c7c7c;
+}
+.new_content_ul .content_source{
+    color: #2a2929;
+    margin-top: 10px;
+}
+.new_content_ul li:hover{
+    box-shadow: grey 1px 3px 10px;
+}
+.choose_condition {
+    margin-bottom: 15px;
+    padding: 8px;
+    border: 1px solid #c5bebe;
+    height: 50px;
+    background: #f0f0f0;
+}
+.choose_condition .choose_item li.hasCheck{
+    background: #2F85FC;
+    color: white;
+}
+.choose_condition .choose_item li:not(.hasCheck):hover{
+    color:  #2F85FC;
+}
+.choose_condition .choose_item li {
+    background: white;
+    float: left;
+    padding: 4px 7px;
+    text-align: center;
+    border-left: 1px solid #d8d6d6;
+    border-top: 1px solid #d8d6d6;
+    border-bottom: 1px solid #d8d6d6;
+}
+.condition_page{
+    float: right;
+}
+.condition_page span.choose_one{
+    margin-right: 15px;
+}
+.condition_page .choose_nums, .current_page{
+    color: #077bf2;
+    font-weight: bolder;
+    font-size: 15px;
+}
+.choose_one .layui-icon {
+    background: #b3b3b3;
+    padding: 4px 18px;
+    color: white;
+}
+
+ .tier_title{
+    text-align: center;
+    font:bolder 20px "微软正黑体";
+    color: #2F85FC;
+} .tier_ul li{
+    float: left;
+    background: #2F85FC;
+    color: white;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: "微软正黑体";
+    text-align: center;
+    padding: 5px;
+    border-radius: 8px;
+}
+.aside_content .aside_img{
+    width: 100%;
+    border: 5px solid #2F85FC;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+.condition_page #page_num{
+    width: 20px;
+    height: 24px;
+    padding: 4px;
+}

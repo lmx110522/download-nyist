@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传——南工人自己的下载中心</title>
+    <link rel="stylesheet" href="/css/upload.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/unlock.css">
+    <link rel="stylesheet" href="/css/dropify.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/base.js"></script>
+    <script src="/js/uploadForm.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script src="/js/upload.js"></script>
+    <script src="/js/drag.js"></script>
+    <script src="/js/dropify.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700,900|Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand nav_title" href="/">南阳理工下载中心</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav my_nav navbar-nav">
+                <li ><a href="/">首页 <span class="sr-only">(current)</span></a></li>
+                <li> <a href="/download/list">全部资料<span class="sr-only">(current)</span></a></li>
+                <li  class="active my_nav_choose"><a href="/download/upload">上传资料<span class="sr-only">(current)</span></a></li>
+                <li><a href="/download/notice">下载须知<span class="sr-only">(current)</span></a></li>
+            </ul>
+           
+            <ul class="nav navbar-nav navbar-right">
+                <#if login_user??>
+                    <li><a href="#"><span class="layui-icon layui-icon-username"></span>${login_user.username}</a></li>
+                    <li><a href="#"><span class="layui-icon layui-icon-dialogue"></span>消息(${login_user.isRead})</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心<span class="caret"></span></a>
+                        <div class="dropdown-menu user_msg">
+                            <img src="${login_user.headImg}">
+                            <div class="user_detail">
+                                <p><a href="/user/mainPage/${login_user.id}" title="点我去个人主页">个人主页</a></p>
+                                <span><span class="layui-icon layui-icon-download-circle"></span> 累计下载次数 <span class="operate_time"> ${login_user.downCounts} </span> 次</span>
+                                <span><span class="layui-icon layui-icon-upload-drag"></span> 累计上传次数 <span class="operate_time">  ${login_user.uploadCounts} </span> 次</span>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li><a href="/user/loginout"><span class="layui-icon layui-icon-close"></span>退出</a></li>
+                    <#else>
+                        <li><a href="#" id="open_login"><span class="layui-icon layui-icon-username"></span>登录</a></li>
+                </#if>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container content">
+    <div class="download_content">
+        <h3>
+            文件上传中心
+        </h3>
+        <form class="layui-form" method="post" id="myForm" action="/download/finshUpload" enctype="multipart/form-data" >
+        <div class="upload_area">
+            <label for="input-file-now">上传</label>
+            <input type="file" name="file" onchange="filesize(this)" id="input-file-now" class="dropify must_input" data-default-file="" />
+        </div>
+        <div class="upload_msg">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">小标题</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" maxlength="15" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="must_input layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">类别</label>
+                    <div class="layui-input-block">
+                        <select id="select" name="categoryByCid.id" lay-verify="required">
+                            <option value=""></option>
+                            <#list categories as category>
+                                <option value="${category.id!''}">${category.name!''}</option>
+                            </#list>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">置顶</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="open" lay-skin="switch">
+                    </div>
+                </div>
+                <span style="display: none" id="no_use_id">${login_user.id!''}</span>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">简述</label>
+                    <div class="layui-input-block">
+                        <textarea name="dDesc" lay-verify="required" placeholder="请输入内容" class="layui-textarea must_input"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn upload_btn" type="submit">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="upload_notice">
+            <ul>
+                <li>
+                    本次上传文件需合法，你上次结束之后，我们会在24小时内审核，审核通过才可以显示在我们系统！
+                </li>
+                <li>
+                    上传文件通过之后，我们会按照你的文件类型回赠给你对应的积分！
+                </li>
+                <li>
+                    感谢您的分享，南阳理工下载中心因你而美好！
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="aside_content">
+        <img src="/img/code.jpg" class="upload_adv">
+        <img src="${uploadUser.headImg!''}" class="use_img">
+        <div class="my_msg">
+            <table class="table user_table">
+                <tr>
+                    <td>上传人:</td>
+                    <td>${uploadUser.username!''}</td>
+                </tr>
+                <tr>
+                    <td>性别:</td>
+                    <td>女</td>
+                </tr>
+                <tr>
+                    <td>生日:</td>
+                    <td>${uploadUser.birth!'未知'}</td>
+                </tr>
+                <tr>
+                    <td>勋章:</td>
+                    <td><span class="layui-badge">${uploadUser.identyByIid.name!'未知'}</span></td>
+                </tr>
+                <tr>
+                    <td>积分:</td>
+                    <td>${uploadUser.score}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="upload_last">
+            <h4>
+               最新上传
+            </h4>
+            <#if  (uploadUser.downloadsById)?size gt 0>
+                <ul>
+                    <#list (uploadUser.downloadsById)?sort_by("dwDate")?reverse as downLoadOne>
+                        <#if downLoadOne_index lt 3 && downLoadOne.isPass == 1>
+                            <li>
+                                <a href="/download/detail/${downLoadOne.id!''}">${downLoadOne.title!''}</a>
+                            </li>
+                        </#if>
+                    </#list>
+                </ul>
+                <#else>
+                    <li><h5 style="text-align: center;color: firebrick">暂无上传内容</h5></li>
+            </#if>
+
+        </div>
+    </div>
+</div>
+<footer class="footer my_footer">
+    <p style="text-align: center">Copyright &copy; 2018.南阳理工学院汇森5楼GIS工作室版权 <a style="color:#2f85fc" href="http://www.nyist.edu.cn/" target="_blank" title="南阳理工学院">南阳理工学院</a></p>
+</footer>
+</body>
+</html>

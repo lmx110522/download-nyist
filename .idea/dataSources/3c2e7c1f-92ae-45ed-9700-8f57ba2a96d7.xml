@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="download@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="download">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="audit"/>
+    <schema id="4" parent="1" name="chat"/>
+    <schema id="5" parent="1" name="information_schema"/>
+    <schema id="6" parent="1" name="mybatis"/>
+    <schema id="7" parent="1" name="mysql"/>
+    <schema id="8" parent="1" name="new_music"/>
+    <schema id="9" parent="1" name="new_shop"/>
+    <schema id="10" parent="1" name="performance_schema"/>
+    <schema id="11" parent="1" name="pinyougoudb"/>
+    <schema id="12" parent="1" name="podcast"/>
+    <schema id="13" parent="1" name="process"/>
+    <schema id="14" parent="1" name="python"/>
+    <schema id="15" parent="1" name="pythondemo"/>
+    <schema id="16" parent="1" name="pythonprogram"/>
+    <schema id="17" parent="1" name="pythonweb"/>
+    <schema id="18" parent="1" name="seckill"/>
+    <schema id="19" parent="1" name="shiro"/>
+    <schema id="20" parent="1" name="shop"/>
+    <schema id="21" parent="1" name="smalltest"/>
+    <schema id="22" parent="1" name="solr"/>
+    <schema id="23" parent="1" name="springcloud"/>
+    <schema id="24" parent="1" name="springcloud02"/>
+    <schema id="25" parent="1" name="springcloud03"/>
+    <schema id="26" parent="1" name="sso"/>
+    <schema id="27" parent="1" name="superpython"/>
+    <schema id="28" parent="1" name="sys"/>
+    <schema id="29" parent="1" name="taotao"/>
+    <schema id="30" parent="1" name="test"/>
+    <schema id="31" parent="1" name="tmall"/>
+    <schema id="32" parent="1" name="voice"/>
+    <table id="33" parent="2" name="admin"/>
+    <table id="34" parent="2" name="category"/>
+    <table id="35" parent="2" name="comment"/>
+    <table id="36" parent="2" name="download"/>
+    <table id="37" parent="2" name="identy"/>
+    <table id="38" parent="2" name="t_message"/>
+    <table id="39" parent="2" name="t_user"/>
+    <column id="40" parent="33" name="id">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="33" name="username">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="42" parent="33" name="password">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="43" parent="33" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="44" parent="34" name="id">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="34" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="46" parent="34" name="counts">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="47" parent="34" name="socre">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <key id="48" parent="34" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="49" parent="35" name="id">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="35" name="content">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="51" parent="35" name="did">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="52" parent="35" name="c_date">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="53" parent="35" name="uid">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <index id="54" parent="35" name="did">
+      <ColNames>did</ColNames>
+    </index>
+    <index id="55" parent="35" name="uid">
+      <ColNames>uid</ColNames>
+    </index>
+    <key id="56" parent="35" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="57" parent="35" name="comment_ibfk_1">
+      <ColNames>did</ColNames>
+      <RefSchemaName>download</RefSchemaName>
+      <RefTableName>download</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="58" parent="35" name="comment_ibfk_2">
+      <ColNames>uid</ColNames>
+      <RefSchemaName>download</RefSchemaName>
+      <RefTableName>t_user</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="59" parent="36" name="id">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="36" name="title">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="61" parent="36" name="d_desc">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="62" parent="36" name="dw_date">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="63" parent="36" name="comment_counts">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="64" parent="36" name="down_counts">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="65" parent="36" name="thumb_counts">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="66" parent="36" name="is_top">
+      <Position>8</Position>
+      <Comment>0不置顶 1置顶</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="67" parent="36" name="file_url">
+      <Position>9</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="68" parent="36" name="uid">
+      <Position>10</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="69" parent="36" name="cid">
+      <Position>11</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="70" parent="36" name="is_pass">
+      <Position>12</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="71" parent="36" name="love_user">
+      <Position>13</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="72" parent="36" name="name">
+      <Position>14</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <index id="73" parent="36" name="cid">
+      <ColNames>cid</ColNames>
+    </index>
+    <index id="74" parent="36" name="uid">
+      <ColNames>uid</ColNames>
+    </index>
+    <key id="75" parent="36" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="76" parent="36" name="download_ibfk_1">
+      <ColNames>uid</ColNames>
+      <RefSchemaName>download</RefSchemaName>
+      <RefTableName>t_user</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="77" parent="36" name="download_ibfk_2">
+      <ColNames>cid</ColNames>
+      <RefSchemaName>download</RefSchemaName>
+      <RefTableName>category</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="78" parent="37" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="79" parent="37" name="max_score">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="80" parent="37" name="min_score">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="81" parent="37" name="name">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="82" parent="37" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="83" parent="38" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="84" parent="38" name="content">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="85" parent="38" name="m_date">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="86" parent="38" name="uid">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="87" parent="38" name="is_read">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="88" parent="38" name="uid">
+      <ColNames>uid</ColNames>
+    </index>
+    <key id="89" parent="38" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="90" parent="38" name="t_message_ibfk_1">
+      <ColNames>uid</ColNames>
+      <RefSchemaName>download</RefSchemaName>
+      <RefTableName>t_user</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="91" parent="39" name="id">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="92" parent="39" name="head_img">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="93" parent="39" name="phone">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="94" parent="39" name="username">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="95" parent="39" name="password">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="96" parent="39" name="birth">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="97" parent="39" name="u_desc">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="98" parent="39" name="is_read">
+      <Position>8</Position>
+      <Comment>0已读 1未读</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="99" parent="39" name="upload_counts">
+      <Position>9</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="100" parent="39" name="down_counts">
+      <Position>10</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="101" parent="39" name="score">
+      <Position>11</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="102" parent="39" name="iid">
+      <Position>12</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="103" parent="39" name="iid">
+      <ColNames>iid</ColNames>
+    </index>
+    <key id="104" parent="39" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="105" parent="39" name="t_user_ibfk_1">
+      <ColNames>iid</ColNames>
+      <RefSchemaName>download</RefSchemaName>
+      <RefTableName>identy</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+  </database-model>
+</dataSource>

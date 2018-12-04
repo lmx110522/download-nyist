@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页——南阳理工下载中心后台管理系统</title>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/admin/css/index/normalize.css" />
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css'>
+    <link rel="stylesheet" type="text/css" href="/admin/css/index/htmleaf-demo.css">
+    <link rel="stylesheet" type="text/css" href="/admin/css/index/index.css">
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+    <script src="/admin/js/index.js"></script>
+
+    <!--[if IE]>
+    <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+        layui.define(['layer', 'form'], function(){
+            var layer = layui.layer
+                ,form = layui.form;
+        });
+    </script>
+</head>
+<body>
+<div class="ct" id="t1">
+    <div class="ct" id="t2">
+        <div class="ct" id="t3">
+            <div class="ct" id="t4">
+                <div class="ct" id="t5">
+                    <ul id="menu">
+                        <a href="#t1"><li class="icon layui-icon layui-icon-component" id="uno"></li></a>
+                        <a href="#t2"><li class="icon layui-icon layui-icon-table" id="dos"></li></a>
+                        <a href="#t3"><li class="icon layui-icon layui-icon-about" id="tres"></li></a>
+                    </ul>
+                    <div class="page" id="p1">
+                        <header class="htmleaf-header">
+                            <h1>南阳理工学院下载中心后台管理系统 <span> Background Management System of Download Center of Nanyang Institute of Technology</span></h1>
+
+                        </header>
+                        <section class="mainPage">
+                            <img src="/admin/images/nyist.jpg">
+                        </section>
+                    </div>
+                    <div class="page" id="p2">
+                        <div class="all_files">
+                            <h2>
+                                全部下载文件一览表
+                            </h2>
+                            <div>
+                                <table class="layui-table">
+                                    <thead>
+                                    <tr>
+                                        <td style="width: 15%">时间</td>
+                                        <td style="width: 30%">小标题</td>
+                                        <td style="width: 10%">来自用户</td>
+                                        <td style="width: 10%">下载量</td>
+                                        <td style="width: 10%">点赞量</td>
+                                        <td style="width: 10%">评论量</td>
+                                        <td style="width: 15%">待审核</td>
+                                        <td style="width: 15%">操作</td>
+                                    </tr>
+                                    </thead>
+                                   <tbody>
+                                   <#list downloadPage.content as download>
+                                       <tr id="${download.id!''}">
+                                           <td style="width: 15%">${download.dwDate!''}</td>
+                                           <#if download.isPass == 1>
+                                               <td style="width: 30%"><a target="_blank" href="/download/detail/${download.id!''}">${download.title!''}</a></td>
+                                               <#else>
+                                                   <td style="width: 30%">${download.title!''}</td>
+                                           </#if>
+
+                                           <td style="width: 10%">${download.tUserByUid.username!''}</td>
+                                           <td style="width: 10%">${download.downCounts!''}</td>
+                                           <td style="width: 10%">${download.thumbCounts!''}</td>
+                                           <td style="width: 10%">${download.commentCounts!''}</td>
+
+                                           <td style="width: 15%">
+                                               <#if download.isPass == 1>
+                                                   <button class="layui-btn layui-bg-blue">已经审核通过</button>
+                                                   <#else>
+                                                       <button class="layui-btn layui-btn-sm allow">点我审核</button>
+                                               </#if>
+
+                                           </td>
+                                           <td style="width: 15%">
+                                               <button  class="layui-btn layui-btn-danger">删除</button>
+                                           </td>
+                                       </tr>
+                                   </#list>
+                                   </tbody>
+                                </table>
+                                <nav aria-label="Page navigation">
+                                    <ul class="page_order pagination">
+                                        <#list 1..downloadPage.totalPages as i>
+                                            <#if i == (downloadPage.number+1)>
+                                                <li class="active"><a href="#">${i}</a></li>
+                                                <#else>
+                                                    <li><a href="#">${i}</a></li>
+                                            </#if>
+                                        </#list>
+                                    </ul>
+                                </nav>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="page" id="p3">
+                        <div class="layui-container">
+                            <h1 style="margin-top: 200px">由于时间比较紧，后续功能会继续添加，敬请期待...</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">审核详情</h4>
+            </div>
+            <form class="layui-form" action="">
+            <div class="modal-body">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">上传时间:</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="time" name="title" disabled required  placeholder="上传时间" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">来自用户:</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="username" name="title" disabled required  placeholder="来自用户" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">小标题:</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="title" name="title" required disabled  placeholder="小标题" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">文件描述:</label>
+                        <div class="layui-input-block">
+                            <textarea name="desc" id="desc" style="resize: none" placeholder="文件描述" disabled class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <button class="layui-btn layui-btn-fluid"  id="downloadBtn">下载查看用户上传的文件</button>
+                    </div>
+                    <hr/>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">您的理由:</label>
+                        <div class="layui-input-block">
+                            <textarea id="my_desc" name="desc" placeholder="理由" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" tid="0" class="btn btn-default refuse"  data-di····smiss="modal">驳回</button>
+                <button type="button" tid="1" class="btn btn-primary pass">通过</button>
+            </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+</html>

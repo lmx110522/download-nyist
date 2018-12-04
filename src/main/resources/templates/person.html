@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人主页——南工人自己的下载中心</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/person.css">
+    <link rel="stylesheet" href="/css/unlock.css">
+    <link rel="stylesheet" href="/css/crop.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/tabs-vertical.css">
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/cropbox.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script src="/js/base.js"></script>
+    <script src="/js/person.js"></script>
+    <script src="/js/drag.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--[if gte IE 9]>
+    <style>
+        .cropped{
+            right: 720px!important;
+        }
+    </style>
+    <![endif]-->
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand nav_title" href="/">南阳理工下载中心</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav my_nav navbar-nav">
+                <li class="active my_nav_choose"><a href="/">首页 <span class="sr-only">(current)</span></a></li>
+                <li><a href="/download/list">全部资料<span class="sr-only">(current)</span></a></li>
+                <li><a href="/download/upload">上传资料<span class="sr-only">(current)</span></a></li>
+                <li><a href="/download/notice">下载须知<span class="sr-only">(current)</span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <#if login_user??>
+                    <li><a href="#"><span class="layui-icon layui-icon-username"></span>${login_user.username}</a></li>
+                    <li><a href="#"><span class="layui-icon layui-icon-dialogue"></span>消息(<span id="only_msg">${login_user.isRead}</span>)</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心<span class="caret"></span></a>
+                        <div class="dropdown-menu user_msg">
+                            <img src="${login_user.headImg}">
+                            <div class="user_detail">
+                                <p><a href="/user/mainPage/${login_user.id}" title="点我去个人主页">个人主页</a></p>
+                                <span><span class="layui-icon layui-icon-download-circle"></span> 累计下载次数 <span class="operate_time"> ${login_user.downCounts} </span> 次</span>
+                                <span><span class="layui-icon layui-icon-upload-drag"></span> 累计上传次数 <span class="operate_time">  ${login_user.uploadCounts} </span> 次</span>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li><a href="/user/loginout"><span class="layui-icon layui-icon-close"></span>退出</a></li>
+                    <#else>
+                        <li><a href="#" id="open_login"><span class="layui-icon layui-icon-username"></span>登录</a></li>
+                </#if>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container content">
+    <div class="download_content">
+        <div class="tabs-vertical">
+            <div class="tabs-content-placeholder">
+                <div class="tab-content-active">
+                    <p>头像</p>
+                    <div>
+                        <img id="use_head_img" src="${tuser.headImg}" alt="Colosseum">
+                    </div>
+                    <button class="layui-btn layui-btn-warm change_btn">更换头像</button>
+
+                    <div class="container" id="crop_img">
+                        <div class="imageBox">
+                            <div class="thumbBox"></div>
+                            <div class="spinner" style="display: none">请选择照片</div>
+                        </div>
+                        <div class="action">
+                            <div class="new-contentarea tc">
+                                <a href="javascript:void(0)" class="upload-img">
+                                    <label for="upload-file">选择照片</label>
+                                </a>
+                                <input type="file" class="" name="upload-file" id="upload-file" />
+                            </div>
+                            <input type="button" id="btnCrop"  class="Btnsty_peyton" value="裁切">
+                            <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+"  >
+                            <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
+                        </div>
+                        <div class="cropped"></div>
+                        <div class="use_area">
+                            <button class="layui-btn" id="must_use" my_id="${tuser.id}">确认使用</button>
+                            <button class="layui-btn layui-btn-primary change_cancel">取消更换</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p>基本信息</p>
+                    <form id="myForm" class="layui-form" action="#">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">手机号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="phone" value="${tuser.phone!''}" required  lay-verify="required" placeholder="手机号" autocomplete="off" class=" all_msg layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户名</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="username" maxlength="7" value="${tuser.username!''}" required  lay-verify="required" placeholder="用户名" autocomplete="off" class="all_msg layui-input can_change">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">密码</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="password" value="******"  required  lay-verify="required" placeholder="密码保密,暂不显示,如果不想更改密码就可以选择不填此项" autocomplete="off" class="all_msg layui-input can_change">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">生日</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="birth" required value="${tuser.birth!''}"  lay-verify="required" placeholder="生日" autocomplete="off" class="all_msg layui-input can_change">
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">描述我</label>
+                            <div class="layui-input-block">
+                                <textarea name="uDesc" placeholder="请输入内容" class="layui-textarea all_msg can_change">${tuser.uDesc!''}</textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn edit_msg" id="${tuser.id!''}"  lay-filter="formDemo">修改</button>
+                                <button type="reset" class="layui-btn layui-btn-primary" id="reset">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div>
+                    <p id="msg_notice">消息通知</p>
+                    <table class="table msg_table">
+                        <#if tuser.tMessagesById?size gt 0>
+                            <tr>
+                                <td><button class="layui-btn layui-btn-normal read_msg" disabled="disabled">标记已读</button></td>
+                            </tr>
+                            <#list tuser.tMessagesById as message>
+                                <tr>
+                                    <td>
+                                        <#if message.isRead == 1>
+                                            <input id="${message.id!''}" class="choose_read" type="checkbox">
+                                        </#if>
+                                    </td>
+                                    <td width="10%">
+                                        <#if message.isRead == 0>
+                                            <span class="layui-badge layui-bg-blue">已读</span>
+                                            <#else>
+                                                <span class="layui-badge">未读</span>
+                                        </#if>
+                                    </td>
+                                    <td width="50%">${message.content!''}</td>
+                                    <td width="20%">${message.mDate!''}</td>
+                                    <td width="10%"><span class="delete_msg layui-icon layui-icon-delete" mid="${message.id!''}"></span></td>
+                                </tr>
+                            </#list>
+                            <#else>
+                                <tr aria-colspan="3">
+                                    <span style="color: firebrick">暂无消息</span>
+                                </tr>
+                        </#if>
+
+                    </table>
+                </div>
+
+                <div>
+                    <p>我的积分</p>
+                    <ul class="use_score">
+                        <li>
+                            积分：<span>${tuser.score!'0'}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <p>我的上传</p>
+                    <table class="table use_upload">
+                        <tr>
+                            <td width="20%"><span class="layui-icon layui-icon-log"></span>时间</td>
+                            <td width="55%"><span class="layui-icon layui-icon-align-center"></span>小标题</td>
+                            <td width="15%"><span class="layui-icon layui-icon-auz"></span>是否通过</td>
+                            <td width="10%"><span class="layui-icon layui-icon-download-circle"></span>状态</td>
+                        </tr>
+                        <#list (tuser.downloadsById)?sort_by("dwDate")?reverse as download>
+                            <tr>
+                                <td width="20%">${download.dwDate!''}</td>
+                                <#if download.isPass=1>
+                                    <td width="55%"><a href="/download/detail/${download.id!'0'}">${download.title!''}</a></td>
+                                    <#else>
+                                        <td width="55%"><a href="#">${download.title!''}</a></td>
+                                </#if>
+
+                                <td width="15%">
+                                    <#if download.isPass=1>
+                                        <span class="layui-badge layui-bg-green">通过</span>
+                                        <#else>
+                                            <span class="layui-badge">审核中</span>
+                                    </#if>
+                                </td>
+                                <#if download.isTop == 1>
+                                    <td width="10%"><span class="layui-badge layui-bg-blue">置顶</span></td>
+                                <#else>
+                                    <td width="10%"><span class="layui-badge layui-bg-gray">普通</span></td>
+                                </#if>
+                            </tr>
+                        </#list>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="aside_content">
+      <div class="tabs-vertical">
+          <ul>
+              <li>
+                  <a class="tab-active" data-index="0" href="#"><span class="layui-icon layui-icon-picture "></span>头像</a>
+              </li>
+              <li>
+                  <a data-index="1" href="#"><span class="layui-icon layui-icon-username"></span>基本信息</a>
+              </li>
+              <li>
+                  <a data-index="2" href=""><span class="layui-icon layui-icon-reply-fill"></span>消息通知</a>
+              </li>
+              <li>
+                  <a data-index="3" href=""><span class="layui-icon layui-icon-rmb"></span>我的积分</a>
+              </li>
+              <li>
+                  <a data-index="4" href=""><span class="layui-icon layui-icon-upload-drag"></span>我的上传</a>
+              </li>
+          </ul>
+      </div>
+    </div>
+</div>
+<footer class="footer my_footer">
+    <p style="text-align: center">Copyright &copy; 2018.南阳理工学院汇森5楼GIS工作室版权 <a style="color:#2f85fc" href="http://www.nyist.edu.cn/" target="_blank" title="南阳理工学院">南阳理工学院</a></p>
+</footer>
+</body>
+</html>

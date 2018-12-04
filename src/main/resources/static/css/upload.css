@@ -1,0 +1,77 @@
+div.content{
+    height: auto;
+}
+.content .download_content{
+    float: left;
+    width: 70%;
+}
+.content .aside_content{
+    float: right;
+    width: 25%;
+    margin-left: 5%;
+}
+.upload_msg {
+    margin-top: 20px;
+    border: 1px solid #e9e5e5;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.upload_btn{
+    background: #2f85fc !important;
+}
+.layui-form-select dl dd.layui-this{
+    background: #2f85fc!important;
+}
+.layui-form-onswitch {
+    border-color:  #2f85fc!important;
+    background-color:  #2f85fc!important;
+}
+.upload_notice ul li{
+    list-style-type:circle !important;
+    list-style: inside;
+    font-size: 15px;
+    margin: 5px;
+    color: white;
+    font-weight: bold;
+}
+.upload_notice {
+    margin-top: 30px;
+    background: #7a7a7a;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px;
+}
+.use_img{
+    margin-top: 30px;
+    width: 70px;
+    height: 70px;
+    margin-left: 20px;
+    border-radius: 50%;
+}
+.aside_content .upload_adv{
+    width: 100%;
+    border-radius: 5px
+}
+.my_msg {
+    padding: 10px;
+    margin-top: -20px;
+    border: 1px solid #e9e9e9;
+}
+.user_table{
+    margin-top: 20px;
+}
+.upload_last {
+    margin-top: 40px;
+}
+.upload_last ul li{
+    color: #2f85fc;
+    font-weight: bold;
+    list-style-type: disc;
+    list-style: inside;
+    margin-top: 10px;
+}
+.upload_last ul li a:hover{
+    text-decoration: none;
+    color: #2170fc;
+}

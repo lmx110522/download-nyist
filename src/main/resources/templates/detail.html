@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>详情——南工人自己的下载中心</title>
+
+    <link rel="stylesheet" href="/css/detail.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/unlock.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/verify.css">
+    <link rel="stylesheet" href="/css/three-dots.css">
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/verify.js"></script>
+    <script src="/js/detail.js"></script>
+    <script src="/js/base.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script src="/js/drag.js"></script>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand nav_title" href="/">南阳理工下载中心</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav my_nav navbar-nav">
+                <li class="active my_nav_choose"><a href="/">首页 <span class="sr-only">(current)</span></a></li>
+                <li ><a href="/download/list">全部资料<span class="sr-only">(current)</span></a></li>
+                <li ><a href="/download/upload">上传资料<span class="sr-only">(current)</span></a></li>
+                <li> <a href="/download/notice">下载须知<span class="sr-only">(current)</span></a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <#if login_user??>
+                    <li><a href="#"><span class="layui-icon layui-icon-username"></span>${login_user.username}</a></li>
+                    <li><a href="#"><span class="layui-icon layui-icon-dialogue"></span>消息(${login_user.isRead})</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心<span class="caret"></span></a>
+                        <div class="dropdown-menu user_msg">
+                            <img src="${login_user.headImg}">
+                            <div class="user_detail">
+                                <p><a href="/user/mainPage/${login_user.id}" title="点我去个人主页">个人主页</a></p>
+                                <span><span class="layui-icon layui-icon-download-circle"></span> 累计下载次数 <span class="operate_time"> ${login_user.downCounts} </span> 次</span>
+                                <span><span class="layui-icon layui-icon-upload-drag"></span> 累计上传次数 <span class="operate_time">  ${login_user.uploadCounts} </span> 次</span>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li><a href="/user/loginout"><span class="layui-icon layui-icon-close"></span>退出</a></li>
+                    <#else>
+                        <li><a href="#" id="open_login"><span class="layui-icon layui-icon-username"></span>登录</a></li>
+                </#if>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <div class="container content">
+        <div class="detail_content">
+            <div class="detail_source">
+                <h3 class="detail_title">
+                    ${downLoad.title!''}
+                </h3>
+                <p class="content_source">
+                    <span class="source_name"> ${downLoad.tUserByUid.username!''}</span>.
+                    <span class="">${downLoad.dwDate!''}</span>
+                    <span style="margin-left: 10px"><span class="layui-icon layui-icon-download-circle"></span>${downLoad.downCounts!''}</span>
+                </p>
+                <pre class="layui-code">${downLoad.dDesc!'暂无描述'}</pre>
+            </div>
+            <div class="download_area">
+                <button id="${downLoad.id}" class="layui-btn layui-btn-fluid btn_download">点我下载</button>
+            </div>
+            <div class="notice_download">
+                上述下载内容属于本站用户上传，本站不富有任何版权责任，或者你也可以<a href="#" style="color: #2f85fc">举报</a>此下载文件不合法
+            </div>
+           <button 	class="layui-btn layui-btn-radius click_love">
+               <#if login_user?? && downLoad.loveUser !=''>
+                   <#list downLoad.loveUser?split("@") as love>
+                           <#if love == login_user.id>
+                                   <span class="layui-icon  layui-icon-tread cancel_thumb"></span><span class="thumb_word">取消赞</span>(<span>${downLoad.thumbCounts!'0'}</span>)
+                                    <#break>
+                               <#else>
+                                    <#if (love_index+1) == downLoad.loveUser?split("@")?size>
+                                        <span class="layui-icon layui-icon-praise"></span> <span class="thumb_word">点赞</span>(<span>${downLoad.thumbCounts!'0'}</span>)
+                                    </#if>
+                           </#if>
+                   </#list>
+                   <#else>
+                       <span class="layui-icon layui-icon-praise"></span> <span class="thumb_word">点赞</span>(<span>${downLoad.thumbCounts!'0'}</span>)
+               </#if>
+           </button>
+           <div class="comments">
+               <h4>参与讨论</h4>
+               <#if login_user?exists>
+                   <span style="display: none" id="no_use_id">${login_user.id!''}</span>
+               </#if>
+               <div id="respond">
+                   <form id="comment-form" name="comment-form" action="#" method="POST">
+                       <div class="comment">
+                           <div class="comment-box">
+                               <input type="hidden" id="did" name="did" value="${downLoad.id!''}">
+                               <textarea <#if login_user??><#else>style="pointer-events:none;"</#if>  placeholder="您的评论或留言（必填）" name="content" id="comment-textarea" cols="100%" rows="3" tabindex="3"></textarea>
+                               <div class="comment-ctrl">
+
+                                   <#if login_user??>
+                                       <button type="submit" name="comment-submit" class="layui-btn layui-btn-normal comment-submit"  id="${downLoad.id!''}" tabindex="4">评论</button>
+                                       <span class="comment_notice">欢迎您的评论</span>
+                                       <#else>
+                                           <button type="submit" name="comment-submit" class="layui-btn layui-btn-normal" style="pointer-events: none" disabled="disabled"  tabindex="4">评论</button>
+                                           <span class="comment_notice"><a id="comment_login" style="color:#2f85fc " href="#">登录</a>后参与评论</span>
+                                   </#if>
+                               </div>
+                           </div>
+                       </div>
+                   </form>
+               </div>
+               <div class="show_comments">
+                   <h4>精彩评论(<span id="comment_counts">${downLoad.commentsById?size}</span>)</h4>
+                   <#if downLoad.commentsById?size gt 0>
+                       <ul>
+                          <#list (downLoad.commentsById)?sort_by("cDate")?reverse as comment>
+                              <#if comment_index lt 5>
+                                  <li>
+                                      <img class="source_img" src="${comment.tUserByUid.headImg!''}">
+                                      <span class="floor_num">#${comment_index+1}</span>
+                                      <div class="content_msg">
+                                          <p class="detail_title"><a href="#"></a></p>
+                                          <span class="pdesc">
+                                           ${comment.content!''}
+                                          </span>
+                                          <p class="content_source">
+                                              <span class="source_name his_size">${comment.tUserByUid.username!''}</span>.
+                                              <span class="source_name his_size">${comment.cDate!''}</span>
+                                              <#if login_user?exists && comment.tUserByUid.id == login_user.id>
+                                                 <span class="source_name his_size removeComment" id="${comment.id!''}" title="删除"><span class="layui-icon layui-icon-delete"></span></span>
+                                              </#if>
+                                          </p>
+                                      </div>
+                                  </li>
+                              </#if>
+                          </#list>
+                       </ul>
+                       <div class="watch_more_comment">
+                           <a class="more_btn" href="#"><span class="layui-icon layui-icon-form"></span> 查看更多</a>
+                       </div>
+                       <#else>
+                           <ul class="null_comment">
+                               <li><img src="/img/null.png"></li>
+                           </ul>
+                   </#if>
+               </div>
+           </div>
+            <footer class="footer my_footer">
+                <p style="text-align: center">Copyright &copy; 2018.南阳理工学院汇森5楼GIS工作室版权 <a style="color:#2f85fc" href="http://www.nyist.edu.cn/" target="_blank" title="南阳理工学院">南阳理工学院</a></p>
+            </footer>
+        </div>
+        <div class="aside_content">
+            <div class="author_msg">
+                <img  class="source_img"  src="${downLoad.tUserByUid.headImg}">
+                <div class="detail_msg">
+                    <p class="author_name">
+                        <span class="his_name">${downLoad.tUserByUid.username}</span><span class="layui-badge">${downLoad.tUserByUid.identyByIid.name!''}</span>
+                    </p>
+                    <p class="author_desc">
+                        ${downLoad.tUserByUid.uDesc!''}
+                    </p>
+                    <p class="author_other_msg">
+                        <span class="layui-icon layui-icon-read"></span> 累计上传数量 <span style="color: #2f85fc;font-weight: bolder">${downLoad.tUserByUid.uploadCounts!'0'}</span>
+                    </p>
+                    <div class="author_new_upload">
+                        <h5>最近上传</h5>
+                       <ul class="upload_ul">
+                           <#list (downLoad.tUserByUid.downloadsById)?sort_by("dwDate")?reverse as downloadNew>
+                               <#if downloadNew_index lt 3 && downloadNew.isPass == 1>
+                                   <li>
+                                       <p class="upload_title">
+                                           <a href="/download/detail/${downloadNew.id!''}">${downloadNew.title!''}</a>
+                                       </p>
+                                       <div>
+                                           <span class="upload_time">${downloadNew.dwDate!''}</span>
+                                           <span class="upload_tier">${downloadNew.categoryByCid.name!''}</span>
+                                       </div>
+                                   </li>
+                               </#if>
+                           </#list>
+                       </ul>
+                        <button class="more_download" id="${downLoad.tUserByUid.id!''}"><a href="/download/list">更多下载戳我</a></button>
+                    </div>
+                </div>
+            </div>
+            <h4>相关下载</h4>
+            <#assign name="lmx"/>
+            <ol class="relate_download">
+                <#if relateDownLoad?size gt 0 >
+                    <#list (relateDownLoad)?sort_by("dwDate")?reverse as relate>
+                        <#if relate.id != downLoad.id>
+                            <#assign name="ynn"/>
+                            <li><a target="_blank" href="/download/detail/${relate.id!''}">${relate.title!''}</a></li>
+                        </#if>
+                    </#list>
+                </#if>
+                <#if name != "ynn">
+                    <h5 class="no_result">暂无相关下载</h5>
+                </#if>
+
+            </ol>
+        </div>
+    </div>
+    <div class="modal varify_modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content my_verify">
+                <h4>验证通过才可以下载呦</h4>
+                <div id="mpanel3"></div>
+                <button type="button" id="check-btn2" class="verify-btn  layui-btn-fluid layui-btn">确定</button>
+            </div>
+        </div>
+    </div>
+    <#include 'loginUI.html'/>
+</body>
+</html>

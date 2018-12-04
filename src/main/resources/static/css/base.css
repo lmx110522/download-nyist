@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+    -moz-user-select:none; /* Firefox私有属性 */
+    -webkit-user-select:none; /* WebKit内核私有属性 */
+    -ms-user-select:none; /* IE私有属性(IE10及以后) */
+    -khtml-user-select:none; /* KHTML内核私有属性 */
+    -o-user-select:none; /* Opera私有属性 */
+    user-select:none; /* CSS3属性 */
+}
+*:hover{
+    text-decoration: none;
+}
+
+.my_nav li a{
+    color: black;
+    font-weight: 400;
+}
+.my_nav li:hover{
+    border-bottom: 3px solid #2F85FC;
+}
+.navbar-header .nav_title{
+    color: #2F85FC !important;
+    font: bold 25px/20px "fantasy" !important;
+}
+.navbar-header .nav_title:hover{
+    color: #246afc !important;
+}
+.my_nav_choose{
+    border-bottom: 3px solid #2F85FC;
+}
+.my_nav_choose a{
+    font: bold 15px "fantasy" !important;
+}
+.my_footer{
+    margin-top: 100px;
+}
+.navbar .user_msg p a{
+    color: #2F85FC;
+    font: bold 18px "fantasy" !important
+}
+.navbar .user_msg p a:hover{
+    text-decoration: none;
+}
+.navbar .user_msg span{
+    margin-bottom: 10px;
+}
+.navbar .user_msg img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    zoom: 1;
+    float: left;
+}
+.user_detail{
+    margin-left: 80px;
+}
+.navbar .user_msg span{
+    display: inline-block;
+}
+
+.dropdown-menu.user_msg {
+    width: 250px;
+}
+.dropdown-menu.user_msg .layui-icon{
+    color: #2F85FC;
+    font-weight: bolder;
+}.dropdown-menu.user_msg .operate_time{
+    color: #2F85FC;
+    font-weight: bolder;
+    font-size: 16px;
+}
+ .navbar-right li a:hover{
+     color: #2247fc !important;
+ }

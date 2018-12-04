@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登录——南阳理工下载中心后台管理系统</title>
+    <meta name="viewport" content="width=device-width">
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <link href="/admin/css/base.css" rel="stylesheet" type="text/css">
+    <link href="/admin/css/login.css" rel="stylesheet" type="text/css">
+    <script>
+       function checkAll() {
+           var username = $("#username").val();
+           var password = $("#password").val();
+           if(username == null || username == ""){
+               $("#username").focus();
+               return false;
+           }
+           if(password == null || password == ""){
+               $("#password").focus();
+               return false;
+           }
+           return true;
+       }
+    </script>
+</head>
+<body>
+
+<div class="login">
+    <form action="/admin/login" method="post" id="form" onsubmit="return checkAll()">
+        <div class="logo"></div>
+        <div class="login_form">
+            <div class="user">
+                <input class="text_value" value="" name="username" type="text" id="username">
+                <input class="text_value" value="" name="password" type="password" id="password">
+            </div>
+            <button class="button" id="submit" type="submit">登录</button>
+        </div>
+
+        <div id="tip"></div>
+        <div class="foot">
+            Copyright © 2018  版权归属<a href="http://www.nyist.edu.cn/" target="_blank" style="color: red" title="南阳理工学院">南阳理工学院</a>汇森5楼GIS工作室所有
+        </div>
+    </form>
+</div>
+</body>
+</html>

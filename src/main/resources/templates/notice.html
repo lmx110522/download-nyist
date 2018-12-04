@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下载须知</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/unlock.css">
+    <link rel="stylesheet" href="/css/unlock.css">
+    <link rel="stylesheet" href="/css/dropify.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/component.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/base.js"></script>
+    <script src="/js/modernizr.custom.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script src="/js/drag.js"></script>
+    <script src="/js/dropify.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700,900|Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand nav_title" href="/">南阳理工下载中心</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav my_nav navbar-nav">
+              <li> <a href="/">首页<span class="sr-only">(current)</span></a></li>
+              <li> <a href="/download/list">全部资料<span class="sr-only">(current)</span></a></li>
+              <li><a href="/download/upload">上传资料<span class="sr-only">(current)</span></a></li>
+              <li class="active my_nav_choose"><a href="/download/notice">下载须知<span class="sr-only">(current)</span></a></li>
+            </ul>
+           
+            <ul class="nav navbar-nav navbar-right">
+                <#if login_user??>
+                    <li><a href="#"><span class="layui-icon layui-icon-username"></span>${login_user.username}</a></li>
+                    <li><a href="#"><span class="layui-icon layui-icon-dialogue"></span>消息(${login_user.isRead})</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心<span class="caret"></span></a>
+                        <div class="dropdown-menu user_msg">
+                            <img src="${login_user.headImg}">
+                            <div class="user_detail">
+                                <p><a href="/user/mainPage/${login_user.id}" title="点我去个人主页">个人主页</a></p>
+                                <span><span class="layui-icon layui-icon-download-circle"></span> 累计下载次数 <span class="operate_time"> ${login_user.downCounts} </span> 次</span>
+                                <span><span class="layui-icon layui-icon-upload-drag"></span> 累计上传次数 <span class="operate_time">  ${login_user.uploadCounts} </span> 次</span>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li><a href="/user/loginout"><span class="layui-icon layui-icon-close"></span>退出</a></li>
+                    <#else>
+                        <li><a href="#" id="open_login"><span class="layui-icon layui-icon-username"></span>登录</a></li>
+                </#if>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <header class="clearfix">
+        <span>南阳理工下载中心</span>
+        <h1>Nanyang Institute of Technology Download Center</h1>
+
+    </header>
+    <div class="main">
+        <ul class="cbp_tmtimeline">
+            <li>
+                <time class="cbp_tmtime" datetime=""><span>First</span> <span>一</span></time>
+                <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                <div class="cbp_tmlabel">
+                    <h2>注册</h2>
+                    <p>我们系统的登录和注册是关联在一起，当你的手机号没有被注册的情况下，请使用《短信登录》的功能来登录，
+                        首次登录，密码时和您的手机号一致。首次注册我们会赠送给你相应的积分，按您得到的积分为准！一个手机号只可以
+                        注册一次！
+                    </p>
+                </div>
+            </li>
+            <li>
+                <time class="cbp_tmtime"><span>Second</span><span>二</span></time>
+                <div class="cbp_tmicon cbp_tmicon-screen"></div>
+                <div class="cbp_tmlabel">
+                    <h2>是否收费</h2>
+                    <p>
+                        我创建这个网站为了我们彼此可以分享知识。所以我们<span style="color: red">不收费</span>,但为了我们大家
+                        可以在获取的时候也可以有奉献的精神，我们设立积分制，当您每次下载都会扣除您的积分，但上传是会增加您的积分。
+                    </p>
+                </div>
+            </li>
+            <li>
+                <time class="cbp_tmtime"><span>Third</span> <span>三</span></time>
+                <div class="cbp_tmicon cbp_tmicon-mail"></div>
+                <div class="cbp_tmlabel">
+                    <h2>关于上传文件</h2>
+                    <p>
+                        上传文件我们需要您输入<span style="color: red">小标题</span>、<span style="color: red">简述</span>,
+                        目的是为了需要下载的用户在查找时方便以及避免下载自己不需要的文件，还有，当您上传文件结束之后，我们会在
+                        <span style="color: red">24</span>小时内给你审核结果，为了避免违法信息出现在我们<span style="color: green">
+                        绿色</span>的网络环境,请您理解，审核通过后我们会给你的积分按照相应数量加到您的账户中！
+                    </p>
+                </div>
+            </li>
+            <li>
+                <time class="cbp_tmtime" ><span>Fourth</span> <span>四</span></time>
+                <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                <div class="cbp_tmlabel">
+                    <h2>举报</h2>
+                    <p>关于用户的上传信息，如果我们审核没有得当，出现了不合法的文件，您发现了，请及时举报给我们，我们给与您积分奖励。同时会
+                        给相应的上传者积分处理，严重的会封号
+                    </p>
+                </div>
+            </li>
+            <li>
+                <time class="cbp_tmtime" ><span>Fifth</span> <span>五</span></time>
+                <div class="cbp_tmicon cbp_tmicon-earth"></div>
+                <div class="cbp_tmlabel">
+                    <h2>系统404或者报错</h2>
+                    <p>
+                        服务器太小，访问大的时候,可能会出现404,请等待片刻，再去访问，或者你可以申报给我，我会及时给您处理！
+                    </p>
+                </div>
+            </li>
+            <li>
+                <time class="cbp_tmtime" datetime="2013-04-17 12:11"><span>About me</span> <span>关于我</span></time>
+                <div class="cbp_tmicon cbp_tmicon-screen"></div>
+                <div class="cbp_tmlabel">
+                    <h2>关于我</h2>
+                    <p>
+                        我是个后台web小白....
+                    </p>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<footer class="footer my_footer">
+    <p style="text-align: center">Copyright &copy; 2018.南阳理工学院汇森5楼GIS工作室版权 <a style="color:#2f85fc" href="http://www.nyist.edu.cn/" target="_blank" title="南阳理工学院">南阳理工学院</a></p>
+</footer>
+<#include 'loginUI.html'/>
+</body>
+</html>

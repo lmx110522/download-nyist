@@ -1,0 +1,77 @@
+div.content{
+    height: auto;
+}
+.content .download_content{
+    float: left;
+    width: 70%;
+}
+.content .aside_content{
+    float: right;
+    width: 25%;
+    margin-left: 5%;
+}
+.tab-content-active{
+    height: auto;
+}
+button.change_btn{
+    margin-top: 20px;
+}
+#use_head_img{
+    height: 190px;
+    width: 190px;
+    border-radius: 50%;
+}
+#crop_img{
+    display: none;
+}
+.use_area button:first-child{
+    background:  #2f85fc;
+}
+.use_area {
+    margin: 14px 248px 14px 200px;
+}
+.all_msg{
+    pointer-events: none;
+}
+.msg_table,.use_upload{
+    margin-top: 40px;
+}
+.msg_table tr:last-child{
+    border-bottom: 1px solid #e4e4e4;
+}
+ul.use_score li{
+    background: #fff7f7;
+    height: 40px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid white;
+    box-shadow: #9c9c9c 2px 1px 2px;
+    margin-top: 30px;
+}
+ul.use_score li span{
+    font: bolder 15px/15px "宋体";
+}
+ul.use_score li span a:hover{
+    text-decoration: none;
+}
+.use_upload tr:first-child td{
+    color:#2f85fc ;
+    font-weight: bold;
+    font-size: 15px;
+}
+.use_upload tr td a:hover{
+    text-decoration: none;
+}
+.use_upload tr:last-child{
+    border-bottom: 1px solid #e4e4e4;
+}
+.msg_table .delete_msg{
+    color: red;
+}
+.msg_table .read_msg{
+    pointer-events: none;
+    display: none;
+}
+.msg_table tr:first-child td{
+    border: none;
+}

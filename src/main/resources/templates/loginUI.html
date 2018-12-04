@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="/css/rock.css">
+<div class="modal login_modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container my_loginUI">
+                    <div class="row">
+                        <div>
+                            <form class="form-horizontal">
+                                <span class="heading">用户登录</span>
+                                <div class="widget widget-tabs">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active login_tab"><a href="#pass" aria-controls="notice" role="tab" data-toggle="tab" >密码登录</a></li>
+                                        <li role="presentation" class="login_tab"><a href="#message" aria-controls="contact" role="tab" data-toggle="tab" >短信登录</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+
+                                        <div role="tabpanel" class="tab-pane contact active" id="pass">
+                                            <form id="pass_my">
+                                                <div class="form-group">
+                                                    <input type="tel" autocomplete="off" id="login_phone" form="pass_my" name="phone" class="form-control must_input"  placeholder="手机号">
+                                                    <i class="fa fa-user"></i>
+                                                </div>
+                                                <div class="form-group help">
+                                                    <input type="password" autocomplete="off" name="password" form="pass_my"  class="form-control must_input" id="password" placeholder="密码">
+                                                    <i class="fa fa-lock"></i>
+                                                </div>
+                                                <div class="bar3 bar"></div>
+                                                <div class="form-group">
+                                                    <div class="main-checkbox">
+                                                    </div>
+                                                    <span class="text">(无注册手机号建议使用短信登录同时会注册)</span>
+                                                    <button type="submit" class="btn submit_btn btn-default not_do" tid="pass_my" disabled="disabled">立刻登录</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+
+                                        <div role="tabpanel" class="tab-pane contact" id="message">
+                                            <form id="mess_login">
+                                                <div class="form-group">
+                                                    <input type="tel" id="message_phone" autocomplete="off" name="phone" class="form-control must_input" placeholder="手机号">
+                                                    <i class="fa fa-user"></i>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <input type="text" name="code" autocomplete="off" class="form-control must_input" id="code" placeholder="手机验证码">
+                                                    <i class="glyphicon glyphicon-signal"></i>
+                                                    <a href="#" class="fa fa-question-circle get_msg not_do"  disabled="disabled">获取验证码</a>
+                                                </div>
+                                                <div class="bar3 bar"></div>
+                                                <div class="form-group">
+                                                    <div class="main-checkbox">
+                                                    </div>
+                                                    <span class="text">(无注册手机号建议使用短信登录同时会注册)</span>
+                                                    <button type="submit" class="btn submit_btn btn-default not_do" tid="mess_login" disabled="disabled">立刻登录</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<div style="display: none;" id="rocket-to-top">
+    <div style="opacity:0;display: block;" class="level-2"></div>
+    <div class="level-3"></div>
+</div>
