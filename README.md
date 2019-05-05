@@ -1,3 +1,4 @@
+# 你可以使用docker pull limaozhan/download_nyist的方式下载到你的docker镜像中，详细查看https://hub.docker.com/r/limaozhan/download_nyist
 ## springboot实现使用ftp实现下载
 由于前后台都是我本人写的，加上就四五天的时间，所以，有点瑕疵！给我评论哟
 **springboot特点有以下**
