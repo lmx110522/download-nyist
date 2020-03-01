@@ -1,5 +1,4 @@
-# 你可以使用docker pull limaozhan/download_nyist的方式下载到你的docker镜像中，详细查看https://hub.docker.com/r/limaozhan/download_nyist
-## springboot实现使用ftp实现下载
+## springboot实现分享类型的项目
 由于前后台都是我本人写的，加上就四五天的时间，所以，有点瑕疵！给我评论哟
 **springboot特点有以下**
  1、使编码变得简单
@@ -46,7 +45,4 @@
 	以及如何显示，具体代码请查看github网站，如果喜欢，给个小星星 ！
 
 
->github地址： https://github.com/lmx110522/download-nyist.git
-
-**
-
+>github地址： https://github.com/lmx110522/download-nyist.git   欢迎访问我的[个人博客](https://lmx110522.github.io/)。
